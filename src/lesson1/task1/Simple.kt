@@ -58,11 +58,7 @@ fun main(args: Array<String>) {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
-        val x1 = hours * 3600
-        val x2 = minutes * 60
-        return x1 + x2 + seconds
-}
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours * 3600 + minutes * 60 + seconds
 
 /**
  * Тривиальная
@@ -84,10 +80,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(grad: Int, min: Int, sec: Int): Double {
-        val x1 = grad + (min + (sec / 60)) / 60
-        return x1 * PI / 180
-}
+fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad + (min + (sec / 60.0)) / 60.0) * PI / 180
 
 /**
  * Тривиальная
@@ -103,10 +96,7 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt(s
  * Пользователь задает целое число, большее 100 (например, 3801).
  * Определить третью цифру справа в этом числе (в данном случае 8).
  */
-fun thirdDigit(number: Int): Int {
-        val c = number / 100
-        return c % 10
-}
+fun thirdDigit(number: Int): Int = number / 100 % 10
 
 /**
  * Простая
