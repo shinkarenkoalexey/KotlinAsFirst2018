@@ -2,6 +2,7 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
+import kotlin.math.*
 
 /**
  * Пример
@@ -30,7 +31,7 @@ fun isNumberHappy(number: Int): Boolean = when {
  * Считать, что ферзи не могут загораживать друг друга.
  */
 fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = when {
-    (abs(x1-x2) == abs(y1-y2)) || (x1 == x2 || y1 == y2) -> true
+    (abs(x1 - x2) == abs(y1 - y2)) || (x1 == x2 || y1 == y2) -> true
     else -> false
 }
 
@@ -66,7 +67,7 @@ fun daysInMonth(month: Int, year: Int): Int = when {
  */
 fun circleInside(x1: Double, y1: Double, r1: Double,
                  x2: Double, y2: Double, r2: Double): Boolean = when {
-    sqrt(sqr(x2 - x1)+sqr(y2 - y1)) + r1 <= r2 -> true
+    sqrt(sqr(x2 - x1) + sqr(y2 - y1)) + r1 <= r2 -> true
     else -> false
 }
 
@@ -79,7 +80,10 @@ fun circleInside(x1: Double, y1: Double, r1: Double,
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = when {
-    (r <= a || r <= b || r <= c) && (s <= a || s <= b || s <= c) -> true
-    else -> false
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+    val x = a + b + c - maxOf(a, b, c) - minOf(a, b, c)
+    val y = minOf(a, b, c)
+    val x1 = maxOf(r, s)
+    val y1 = minOf(r, s)
+    return x <= x1 && y <= y1
 }
