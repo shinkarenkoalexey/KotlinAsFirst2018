@@ -1,6 +1,7 @@
 @file:Suppress("UNUSED_PARAMETER")
 package lesson3.task1
 
+import kotlinx.html.InputType
 import kotlin.math.*
 
 /**
@@ -68,8 +69,9 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int {
     var count = 0
-    var number = n
-    while (number >= 0) {
+    var number = abs(n)
+    if (number == 0) return 1
+    while (number > 0) {
         count++
         number /= 10
     }
@@ -159,11 +161,9 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
 fun collatzSteps(x: Int): Int {
     var x1 = x
     var count = 0
-    while(x != 1) {
-        when {
-            x1 % 2 == 0 -> x1 /= 2
-            else -> 3 * x1 + 1
-        }
+    while (x != 1) {
+        if (x1 % 2 == 0) x1 /= 2
+        else x1 = 3 * x1 + 1
         count++
     }
     return count
@@ -176,7 +176,13 @@ fun collatzSteps(x: Int): Int {
  * sin(x) = x - x^3 / 3! + x^5 / 5! - x^7 / 7! + ...
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
-fun sin(x: Double, eps: Double): Double = TODO()
+fun sin(x: Double, eps: Double): Double {
+    var x1 = x
+    while (abs(x1) > eps) {
+        x1++
+    }
+    return x1
+}
 
 /**
  * Средняя
@@ -197,7 +203,7 @@ fun cos(x: Double, eps: Double): Double = TODO()
 fun revert(n: Int): Int {
     var x = n
     var rez = 0
-    while(x > 0) {
+    while (x > 0) {
         rez = rez * 10 + x % 10
         x /= 10
     }
@@ -234,7 +240,22 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var number = n
+    var x = 1
+    var y = 0
+    do {
+        y = x * x
+        if (digitNumber(y) < number) number -= digitNumber(y)
+        else {
+            for (i in 1..digitNumber(y) - number) {
+                y /= 10
+            }
+            return y % 10
+        }
+        x++
+    } while (true)
+}
 
 /**
  * Сложная
@@ -245,4 +266,19 @@ fun squareSequenceDigit(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    var number = n
+    var x = 1
+    var y = 0
+    do {
+        y = fib(x)
+        if (digitNumber(y) < number) number -= digitNumber(y)
+        else {
+            for (i in 1..digitNumber(y) - number) {
+                y /= 10
+            }
+            return y % 10
+        }
+        x++
+    } while (true)
+}

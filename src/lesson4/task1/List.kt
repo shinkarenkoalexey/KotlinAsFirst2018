@@ -133,7 +133,7 @@ fun mean(list: List<Double>): Double = TODO()
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
-    var ar = list.sum() / list.size
+    val ar = list.sum() / list.size
     for (i in 0 until list.size) {
         list[i] = list[i] - ar
     }
@@ -180,7 +180,7 @@ fun accumulate(list: MutableList<Double>): MutableList<Double> = TODO()
  */
 fun factorize(n: Int): List<Int> = TODO()
 
-/**
+/**p
  * Сложная
  *
  * Разложить заданное натуральное число n > 1 на простые множители.
