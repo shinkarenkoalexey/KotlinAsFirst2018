@@ -161,7 +161,7 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
 fun collatzSteps(x: Int): Int {
     var x1 = x
     var count = 0
-    while (x != 1) {
+    while (x1 != 1) {
         if (x1 % 2 == 0) x1 /= 2
         else x1 = 3 * x1 + 1
         count++
@@ -176,13 +176,7 @@ fun collatzSteps(x: Int): Int {
  * sin(x) = x - x^3 / 3! + x^5 / 5! - x^7 / 7! + ...
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
-fun sin(x: Double, eps: Double): Double {
-    var x1 = x
-    while (abs(x1) > eps) {
-        x1++
-    }
-    return x1
-}
+fun sin(x: Double, eps: Double): Double = TODO()
 
 /**
  * Средняя
@@ -246,9 +240,10 @@ fun squareSequenceDigit(n: Int): Int {
     var y = 0
     do {
         y = x * x
-        if (digitNumber(y) < number) number -= digitNumber(y)
+        val g = digitNumber(y)
+        if (g < number) number -= g
         else {
-            for (i in 1..digitNumber(y) - number) {
+            for (i in 1..g - number) {
                 y /= 10
             }
             return y % 10
@@ -272,9 +267,10 @@ fun fibSequenceDigit(n: Int): Int {
     var y = 0
     do {
         y = fib(x)
-        if (digitNumber(y) < number) number -= digitNumber(y)
+        val g = digitNumber(y)
+        if (g < number) number -= g
         else {
-            for (i in 1..digitNumber(y) - number) {
+            for (i in 1..g - number) {
                 y /= 10
             }
             return y % 10
