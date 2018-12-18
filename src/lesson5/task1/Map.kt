@@ -108,11 +108,11 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
  */
 fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
     val result = mutableMapOf<Int, MutableList<String>>()
-    for ((name, grade) in grades) {
-        val nameList = result[grade]
+    for ((names, grades) in grades) {
+        val nameList = result[grades]
         if (nameList == null) {
-            result[grade] = mutableListOf(name)
-        } else nameList.add(name)
+            result[grades] = mutableListOf(names)
+        } else nameList.add(names)
     }
     return result
 }
