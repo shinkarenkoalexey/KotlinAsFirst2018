@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import lesson2.task2.daysInMonth
+
 /**
  * Пример
  *
@@ -71,8 +73,38 @@ fun main(args: Array<String>) {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun dateStrToDigit(str: String): String {
+    val parts = str.split(" ")
+    if (parts.size != 3) return ""
+    val day = parts[0].toIntOrNull()
+    val month = digitToMonth(parts[1])
+    val year = parts[2].toIntOrNull()
+    if (day == null || month == null || year == null) return ""
+    val month1 = month.toInt()
+    val day1 = daysInMonth(month1, year)
+    if (day > day1) return "" else return String.format("%02d.%s.%s", day, month, year)
+}
 
+/**
+ * Перевод числового значения даты в буквенный
+ */
+fun digitToMonth(x: String):String? {
+    return when (x) {
+        "января" -> "01"
+        "февраля" -> "02"
+        "марта" -> "03"
+        "апреля" -> "04"
+        "мая" -> "05"
+        "июня" -> "06"
+        "июля" -> "07"
+        "августа" -> "08"
+        "сентября" -> "09"
+        "октября" -> "10"
+        "ноября" -> "11"
+        "декабря" -> "12"
+        else -> null
+    }
+}
 
 /**
  * Средняя
@@ -84,7 +116,38 @@ fun dateStrToDigit(str: String): String = TODO()
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30 февраля 2009) считается неверными
  * входными данными.
  */
-fun dateDigitToStr(digital: String): String = TODO()
+fun dateDigitToStr(digital: String): String {
+    val parts = digital.split(".")
+    if (parts.size != 3) return ""
+    val day = parts[0].toIntOrNull()
+    val month = numberToMonth(parts[1])
+    val year = parts[2].toIntOrNull()
+    if (day == null || month == null || year == null) return ""
+    val monthint = parts[1].toInt()
+    val day1 = daysInMonth(monthint, year)
+    if (day > day1) return "" else return String.format("%s %s %s", day, month, year)
+}
+
+/**
+ * Перевод числового значения даты в буквенный
+ */
+fun numberToMonth(x: String):String? {
+    return when (x) {
+        "01" -> "января"
+        "02" -> "февраля"
+        "03" -> "марта"
+        "04" -> "апреля"
+        "05" -> "мая"
+        "06" -> "июня"
+        "07" -> "июля"
+        "08" -> "авуста"
+        "09" -> "сентября"
+        "10" -> "октября"
+        "11" -> "ноября"
+        "12" -> "декабря"
+        else -> null
+    }
+}
 
 /**
  * Средняя
